@@ -1,0 +1,58 @@
+.brand {
+	height: 37px;
+	width: 149px;
+}
+
+.nav-icon {
+	height: 14px;
+	width: 11px;
+}
+
+.toggler-icon {
+	color: #FF5A70;
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.nav-link {
+	font-family: Aileron;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 0.18px;
+}
+
+li.active a {
+	color: #ff5a70 !important;
+	border-bottom: solid 6px;
+}
+
+.nav-arrow {
+	font-size: 11px;
+}
+
+.user-arrow {
+	color: #BEBEBE;
+}
+
+@media (max-width: 575px) {
+	.brand {
+		height: 19px;
+		width: 79px;
+	}
+}
+@media (max-width: 840px) {
+	.nav-name {
+		display: none;
+	}
+}
+@media (min-width: 575px) {
+	.navbar-collapse {
+		height: 100%;
+	}
+	li.active {
+		height: 100%;
+		padding-top: 35px;
+	}
+}

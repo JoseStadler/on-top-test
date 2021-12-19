@@ -1,0 +1,21 @@
+app-top-navbar {
+	position: absolute;
+	width: 100vw;
+	height: 108px;
+	top: 0px;
+	box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.main-content-wrap {
+	margin-top: 108px;
+}
+
+@media (max-width: 575px) {
+	app-top-navbar {
+		height: 61px;
+	}
+
+	.main-content-wrap {
+		margin-top: 61px;
+	}
+}

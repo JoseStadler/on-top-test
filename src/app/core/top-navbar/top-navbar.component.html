@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-sm navbar-light nav-bar h-100 pt-0 pb-0">
+	<a class="navbar-brand ml-md-5 mr-md-5">
+		<mat-icon
+			class="d-inline-block align-top brand"
+			svgIcon="on-top-brand"
+			aria-hidden="false"
+			aria-label="Company Icon"
+		></mat-icon>
+	</a>
+	<button
+		class="navbar-toggler border-0"
+		type="button"
+
+		aria-expanded="false"
+		aria-label="Toggle navigation"
+	>
+		<mat-icon class="toggler-icon">menu</mat-icon>
+	</button>
+
+	<div class="collapse navbar-collapse white-bg row h-100" id="navbarToggler">
+		<div class="col-lg-10 col-md-9 col-sm-8 h-100">
+			<ul class="navbar-nav h-100 align-items-center">
+				<li
+					class="nav-item ml-auto mr-auto"
+					*ngFor="let menu of menus"
+					[routerLink]="menu.route"
+					routerLinkActive="active"
+				>
+					<a class="nav-link h-100">
+						<mat-icon
+							class="nav-icon"
+							[svgIcon]="menu.icon"
+							aria-hidden="false"
+						></mat-icon>
+						<span class="nav-name p-lg-2">{{ menu.name }}</span>
+						<em class="fa fa-chevron-down nav-arrow"></em>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col border-left">
+			<a *ngIf="isLoggedIn$ | async">
+				<img class="pl-lg-4" src="assets/images/user.png" alt="User" />
+				<em class="fa fa-chevron-down pl-2 user-arrow"></em>
+			</a>
+		</div>
+	</div>
+</nav>

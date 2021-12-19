@@ -1,0 +1,256 @@
+<div class="container">
+	<div class="row">
+		<h3 class="ml-auto mr-auto mt-5">
+			Contracts for {{ clientName$ | async }}
+		</h3>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<mat-form-field appearance="outline" class="w-100">
+				<mat-icon matPrefix>search</mat-icon>
+				<mat-label>Search</mat-label>
+				<input matInput />
+			</mat-form-field>
+		</div>
+		<div class="col-4 col-md-2">
+			<button
+				mat-raised-button
+				class="w-100 filter-btn"
+				(click)="filtersOpen = !filtersOpen"
+			>
+				<mat-icon>tune</mat-icon>
+				Filter
+			</button>
+		</div>
+		<div class="col-8 col-md-3">
+			<button mat-raised-button class="w-100 new-hire-btn">
+				<mat-icon>add</mat-icon>
+				New hire
+			</button>
+		</div>
+	</div>
+	<ng-container *ngIf="filtersOpen">
+		<div class="row pt-3">
+			<div class="col-8 col-md-3 ml-auto mr-auto filters-container">
+				<mat-form-field class="w-100" appearance="outline">
+					<mat-icon matPrefix>date_range</mat-icon>
+					<mat-label>Create On</mat-label>
+					<mat-date-range-input [rangePicker]="createOnPicker">
+						<input matStartDate placeholder="Start date" />
+						<input matEndDate placeholder="End date" />
+					</mat-date-range-input>
+					<mat-datepicker-toggle matSuffix [for]="createOnPicker">
+						<mat-icon matDatepickerToggleIcon
+							>keyboard_arrow_down</mat-icon
+						>
+					</mat-datepicker-toggle>
+					<mat-date-range-picker
+						#createOnPicker
+					></mat-date-range-picker>
+				</mat-form-field>
+			</div>
+			<div class="col-8 col-md-3 ml-auto mr-auto filters-container">
+				<mat-form-field appearance="outline" class="w-100">
+					<mat-label>Contract Type</mat-label>
+					<mat-select> </mat-select>
+					<mat-icon matSuffix class="mr-2">keyboard_arrow_down</mat-icon>
+				</mat-form-field>
+			</div>
+			<div class="col-8 col-md-3 ml-auto mr-auto filters-container">
+				<mat-form-field appearance="outline" class="w-100">
+					<mat-label>Contractor Name</mat-label>
+					<input matInput />
+				</mat-form-field>
+			</div>
+			<div class="col-8 col-md-3 ml-auto mr-auto filters-container">
+				<mat-form-field appearance="outline" class="w-100">
+					<mat-label>Status</mat-label>
+					<mat-select> </mat-select>
+					<mat-icon matSuffix class="mr-2">keyboard_arrow_down</mat-icon>
+				</mat-form-field>
+			</div>
+			<div
+				class="
+					col-8 col-md-3
+					ml-auto
+					mr-auto
+					filters-container
+					text-right
+					d-block d-md-none
+				"
+			>
+				<a class="text-danger">
+					<mat-icon fontIcon="12px" svgIcon="remove_icon"></mat-icon>
+					Clear filters
+				</a>
+			</div>
+		</div>
+	</ng-container>
+
+	<div class="row pt-4 pb-5">
+		<div class="col-12" [ngClass]="{'mat-card': breakpointReached}">
+				<table mat-table [dataSource]="dataSource">
+					<ng-container matColumnDef="contractor_name" >
+						<th mat-header-cell *matHeaderCellDef class="text-center">Contractor name</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title bg-light"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none text-dark">
+									<strong>Contractor name</strong>
+								</div>
+								<div class="col-6 col-md-12 table-text">
+									<img class="pr-lg-3 contractor-image" [src]="contractor.contractor.profilePhotoUrl" height="41px" alt="User" />
+									{{ contractor.contractor.name }}
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="type">
+						<th mat-header-cell *matHeaderCellDef>Type</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none text-dark">
+									<strong>Type</strong>
+								</div>
+								<div class="col-6 col-md-12 table-text">
+									{{ contractor.type }}
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="start_date">
+						<th mat-header-cell *matHeaderCellDef>Start date</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title bg-light"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none">
+									<strong>Start Date</strong>
+								</div>
+								<div class="col-6 col-md-12 table-text">
+									{{ contractor.startDate | date: "mediumDate" }}
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="ammount">
+						<th mat-header-cell *matHeaderCellDef>Ammount</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none text-dark">
+									<strong>Ammount</strong>
+								</div>
+								<div class="col-6 col-md-12 table-text" >
+									${{ contractor.ammount }} USD
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="status">
+						<th mat-header-cell *matHeaderCellDef width="15%">Status</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title bg-light"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none">
+									<strong>Status</strong>
+								</div>
+								<div class="col-6 col-md-12">
+									<ul
+										style="
+											margin-block-start: unset;
+											margin-block-end: unset;
+											padding-inline-start: 25px;
+											border-radius: 20px;
+										"
+										[ngStyle]="getUlStyle(contractor.status)"
+									>
+										<li [ngStyle]="getLiStyle(contractor.status)">
+											{{ contractor.status }}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="actions">
+						<th mat-header-cell *matHeaderCellDef width="10%" class="text-center">Actions</th>
+						<td
+							mat-cell
+							*matCellDef="let contractor"
+							class="m-card-sub-title"
+						>
+							<div class="row h-100 align-items-center">
+								<div class="col-6 d-md-none text-dark">
+									<strong>Actions</strong>
+								</div>
+								<div class="col-6 col-md-12 text-md-center actions-btn">
+									<button
+										mat-icon-button
+										[matMenuTriggerFor]="menu"
+									>
+										<mat-icon class="d-none d-md-block"
+											>more_vert</mat-icon
+										>
+										<mat-icon class="d-md-none"
+											>more_horiz</mat-icon
+										>
+									</button>
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<tr
+						mat-header-row
+						*matHeaderRowDef="displayedColumns; sticky: true"
+					></tr>
+					<tr
+						mat-row
+						*matRowDef="let row; columns: displayedColumns"
+						[ngClass]="{ 'bg-light': breakpointReached }"
+						[ngStyle]="getTrStyle()"
+					></tr>
+				</table>
+		</div>
+	</div>
+</div>
+
+<mat-menu #menu="matMenu">
+	<button mat-menu-item class="border-bottom">
+		<mat-icon svgIcon="edit" class="menu-icon"></mat-icon>
+		<span>Edit</span>
+	</button>
+	<button mat-menu-item class="border-bottom">
+		<mat-icon svgIcon="sign" class="menu-icon"></mat-icon>
+		<span>Sign</span>
+	</button>
+	<button mat-menu-item class="border-bottom">
+		<mat-icon svgIcon="view_summary" class="menu-icon"></mat-icon>
+		<span>View summary</span>
+	</button>
+	<button mat-menu-item>
+		<mat-icon svgIcon="delete" class="menu-icon"></mat-icon>
+		<span>Delete</span>
+	</button>
+</mat-menu>

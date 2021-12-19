@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	background: #f9f9f9;
+}
+
+.white-bg {
+	background: #ffffff;
+}
+
+.mat-form-field-outline {
+	background-color: #ffffff !important;
+}
+
+.mat-form-field-label,
+.mat-form-field-prefix {
+	color: #c4c4c4;
+}
+
+.mat-form-field-prefix {
+	padding-right: 10px;
+}
+
+.mat-select-arrow {
+	opacity: 0;
+}
+
+.mat-menu-panel {
+	width: 162px;
+	background: #ffffff;
+	mix-blend-mode: normal;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+
+.mat-menu-content {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
